@@ -1,0 +1,17 @@
+
+
+
+
+iptables -t filter -L FORWARD
+
+iptables -t filter -A FORWARD -i wg0 -j ACCEPT
+iptables -t filter -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+
+iptables -A INPUT -i wg0 -j ACCEPT
+iptables -A FORWARD -i wg0 -j ACCEPT
+iptables -A FORWARD -o wg0 -j ACCEPT
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+
+

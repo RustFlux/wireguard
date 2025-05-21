@@ -1,0 +1,34 @@
+
+要使用 `kcptun` 加速 `WireGuard`，您可以将 `kcptun` 作为 `WireGuard` 的传输协议，以提高数据传输的性能和稳定性。以下是一般步骤：
+
+1. **安装和配置 WireGuard**：
+   - 首先，安装和配置 `WireGuard`，设置好服务器和客户端的配置。
+
+2. **安装和配置 kcptun**：
+   - 安装 `kcptun` 并配置它作为 `WireGuard` 的传输协议。
+   - 下载适用于您系统的 `kcptun`，然后解压缩文件。
+
+3. **配置 kcptun 服务器端**：
+   - 启动 `kcptun` 服务器端：`./server_linux_amd64 -l :29900 -t 127.0.0.1:51820 -key yourkey -mtu 1400 -sndwnd 2048 -rcvwnd 2048 -mode fast2`
+     - `-l`：`kcptun` 监听的端口
+     - `-t`：`WireGuard` 服务器地址和端口
+     - `-key`：密钥，与 `WireGuard` 服务器端配置中的密钥匹配
+     - `-mtu`：MTU 大小
+     - `-sndwnd` 和 `-rcvwnd`：发送和接收窗口大小
+     - `-mode`：模式，可以根据需要选择
+
+4. **配置 kcptun 客户端**：
+   - 启动 `kcptun` 客户端：`./client_linux_amd64 -l :29900 -r serverip:29900 -key yourkey -mtu 1400 -sndwnd 2048 -rcvwnd 2048 -mode fast2`
+     - `-l`：本地监听端口
+     - `-r`：`kcptun` 服务器地址和端口
+     - 其他参数与服务器端类似
+
+5. **修改 WireGuard 配置**：
+   - 在 `WireGuard` 配置文件中，将 `Endpoint` 指向 `kcptun` 的监听地址和端口。
+
+6. **启动 kcptun 和 WireGuard**：
+   - 分别启动 `kcptun` 和 `WireGuard` 服务端和客户端。
+
+通过这种方式，您可以使用 `kcptun` 加速 `WireGuard` 的数据传输。请确保配置参数与您的需求和网络环境相匹配。如果您遇到问题或需要进一步帮助，请随时告诉我。
+
+
