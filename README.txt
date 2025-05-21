@@ -4,6 +4,10 @@ apt update
 
 apt install iptables iptables-persistent
 
+echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
+
+sudo sysctl -p  # 立即生效
+
 
 iptables -t nat -A PREROUTING -p tcp --dport 10000:65535 -j REDIRECT --to-port 51820
 
