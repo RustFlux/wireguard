@@ -1,5 +1,9 @@
 #wireguard
 
+apt update
+
+apt install iptables iptables-persistent
+
 
 iptables -t nat -A PREROUTING -p tcp --dport 10000:65535 -j REDIRECT --to-port 51820
 
