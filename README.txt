@@ -14,6 +14,15 @@ iptables -t nat -A PREROUTING -p tcp --dport 10000:65535 -j REDIRECT --to-port 5
 iptables -t nat -A PREROUTING -p udp --dport 10000:65535 -j REDIRECT --to-port 51820
 
 
+
+# 保存规则（持久化）
+sudo netfilter-persistent save
+
+sudo netfilter-persistent reload
+
+
+
+
 service iptables save
 
 iptables -t nat -A PREROUTING -p udp --dport 10000:60000 -j REDIRECT --to-port 50572
