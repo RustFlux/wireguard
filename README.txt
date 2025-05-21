@@ -21,7 +21,11 @@ netfilter-persistent save
 netfilter-persistent reload
 
 
+ iptables -t nat -L -v -n
 
+
+ ufw allow 10000:65535/tcp
+ ufw allow 10000:65535/udp
 
 service iptables save
 
