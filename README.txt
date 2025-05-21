@@ -16,9 +16,9 @@ iptables -t nat -A PREROUTING -p udp --dport 10000:65535 -j REDIRECT --to-port 5
 
 
 # 保存规则（持久化）
-sudo netfilter-persistent save
+netfilter-persistent save
 
-sudo netfilter-persistent reload
+netfilter-persistent reload
 
 
 
