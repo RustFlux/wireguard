@@ -37,4 +37,4 @@ mkdir  /etc/iptables/
 
 iptables-save > /etc/iptables/rules.v4
 
-
+sudo wg show wg0 
